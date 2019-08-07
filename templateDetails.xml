@@ -15,10 +15,6 @@
         <p style="margin-bottom:20px;font-weight:400;">The changelog a template is available on the <a href="https://master3.alekvolsk.info/download" target="_blank"><u>download page</u></a>.</p>
     ]]></description>
     
-    <updateservers>
-        <server type="extension" priority="1" name="Master3"><![CDATA[https://master3.alekvolsk.info/files/master3lite_update.xml]]></server>
-    </updateservers>
-    
     <files>
         <filename>index.php</filename>
         <filename>component.php</filename>
