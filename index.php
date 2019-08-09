@@ -84,7 +84,7 @@ $this->addHeadLink(Uri::base(true) . '/templates/' . $this->template . '/apple-t
 
 
 <?php if ($this->countModules('navbar-left + navbar-center + navbar-right')) { ?>
-<div role="navigation" id="navbar" class="uk-section uk-padding-remove-vertical uk-navbar-container">
+<div role="navigation" id="navbar" class="uk-section uk-section-xsmall uk-navbar-container">
     <div class="uk-container">
         <div data-uk-navbar>
             
@@ -111,7 +111,7 @@ $this->addHeadLink(Uri::base(true) . '/templates/' . $this->template . '/apple-t
 <?php } ?>
 
 
-<?php if ($this->countModules('navbar-right')) { ?>
+<?php if ($this->countModules('breadcrumb')) { ?>
 <div role="navigation" id="breadcrumb" class="uk-section uk-section-xsmall uk-section-default">
     <div class="uk-container">
         <jdoc:include type="modules" name="breadcrumb" style="master3lite" />

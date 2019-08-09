@@ -45,7 +45,7 @@
         <position>sidebar-a</position>
         <position>sidebar-b</position>
         <position>bottom</position>
-        <position>footer-left</position>
+        <position>footer</position>
         <position>offcanvas</position>
     </positions>
     
