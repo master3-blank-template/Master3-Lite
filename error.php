@@ -9,13 +9,40 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
-use Joomla\CMS\Router\Route;
 use Joomla\CMS\Language\Text;
+
+$this->setHtml5(true);
+$this->setGenerator('');
+$this->setMetaData('viewport', 'width=device-width,initial-scale=1');
+$this->setMetaData('X-UA-Compatible', 'IE=edge', 'http-equiv');
+
+$cssUikit = $this->params->get('cssUikit', 'uikit.min.css');
+if ($cssUikit !== 'none') {
+    HTMLHelper::stylesheet('templates/' . $this->template . '/uikit/dist/css/' . $cssUikit, [], ['options' => ['version' => 'auto']]);
+}
+
+$jsUikit = $this->params->get('jsUikit', 'uikit.min.js');
+if ($jsUikit !== 'none') {
+    HTMLHelper::script('templates/' . $this->template . '/uikit/dist/js/' . $jsUikit, [], ['options' => ['version' => 'auto']]);
+}
+
+$jsIcons = $this->params->get('jsIcons', 'uikit-icons.min.js');
+if ($jsIcons !== 'none') {
+    HTMLHelper::script('templates/' . $this->template . '/uikit/dist/js/' . $jsIcons, [], ['options' => ['version' => 'auto']]);
+}
+
+$this->addFavicon(Uri::base(true) . '/templates/' . $this->template . '/favicon.png', 'image/png', 'shortcut icon');
+$this->addHeadLink(Uri::base(true) . '/templates/' . $this->template . '/apple-touch-icon.png', 'apple-touch-icon-precomposed');
+
+$errorLevelStr = Factory::getConfig()->get('error_reporting', 'default');
+$isTable = ($errorLevelStr === 'maximum') || ($errorLevelStr === 'development');
+$isBacktrace = $errorLevelStr === 'development';
 
 $errorCode = $this->error->getCode();
 
-$link = Uri::base(true) . Route::_(Factory::getApplication()->getMenu('site')->getDefault()->link);
+$link = Uri::base(true);
 
 ?>
 <!DOCTYPE html>
@@ -57,6 +84,7 @@ $link = Uri::base(true) . Route::_(Factory::getApplication()->getMenu('site')->g
                 
                 <div class="uk-margin-large-top"><?php echo Text::_('JERROR_LAYOUT_PLEASE_CONTACT_THE_SYSTEM_ADMINISTRATOR'); ?></div>
 
+                <?php if ($isTable) { ?>
                 <table class="uk-table uk-table-divider uk-table-striped uk-margin uk-table-responsive uk-margin-large-top">
                     <tr>
                         <td class="uk-text-bold">Error Code</td>
@@ -71,6 +99,9 @@ $link = Uri::base(true) . Route::_(Factory::getApplication()->getMenu('site')->g
                         <td><?php echo htmlspecialchars($this->error->getFile(), ENT_QUOTES, 'UTF-8'), ':', $this->error->getLine(); ?></td>
                     </tr>
                 </table>
+                <?php } ?>
+                
+                <?php if ($isBacktrace) { ?>
                 <div class="uk-margin-large-top">
                     <?php
                     echo $this->renderBacktrace();
@@ -93,6 +124,7 @@ $link = Uri::base(true) . Route::_(Factory::getApplication()->getMenu('site')->g
                     }
                     ?>
                 </div>
+                <?php } ?>
             </div>
         </div>
     </div>

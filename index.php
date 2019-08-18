@@ -55,6 +55,7 @@ $this->addHeadLink(Uri::base(true) . '/templates/' . $this->template . '/apple-t
             <?php if ($this->countModules('toolbar-right')) { ?>
             <jdoc:include type="modules" name="toolbar-right" style="master3lite" />
             <?php } ?>
+
         </div>
     </div>
 </div>
@@ -77,6 +78,7 @@ $this->addHeadLink(Uri::base(true) . '/templates/' . $this->template . '/apple-t
                 <jdoc:include type="modules" name="headbar" style="master3lite" />
             </div>
             <?php } ?>
+
         </div>
     </div>
 </header>
@@ -105,6 +107,7 @@ $this->addHeadLink(Uri::base(true) . '/templates/' . $this->template . '/apple-t
                 <jdoc:include type="modules" name="navbar-right" style="master3lite" />
             </div>
             <?php } ?>
+
         </div>
     </div>
 </div>
@@ -148,7 +151,8 @@ $mainWidth = $sidebarACount && $sidebarBCount ? '1-2' : ($sidebarACount || $side
 <div id="main" class="uk-section uk-section-default">
     <div class="uk-container">
         <div data-uk-grid>
-            <div class="uk-width-<?php echo $mainWidth; ?>@m">
+            
+        <div class="uk-width-<?php echo $mainWidth; ?>@m">
                 <div class="uk-child-width-1-1 uk-grid divider" data-uk-grid>
                     
                     <?php if ($mainTopCount) { ?>
@@ -168,7 +172,6 @@ $mainWidth = $sidebarACount && $sidebarBCount ? '1-2' : ($sidebarACount || $side
                     <?php } ?>
                 </div>
             </div>
-
             
             <?php if ($sidebarACount) { ?>
             <aside class="uk-width-1-4@m uk-width-1-2@m uk-flex-first@m">
@@ -185,6 +188,7 @@ $mainWidth = $sidebarACount && $sidebarBCount ? '1-2' : ($sidebarACount || $side
                 </div>
             </aside>
             <?php } ?>
+            
         </div>
     </div>
 </div>

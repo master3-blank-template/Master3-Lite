@@ -17,6 +17,7 @@ function modChrome_master3lite($module, &$params, &$attribs)
 
     $moduleClass = [];
     $moduleClass[] = 'tm-position-' . $module->position;
+    $moduleClass[] = 'tm-modid-' . $module->id;
     $moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx', ''));
     if ($moduleclass_sfx) {
         $moduleClass[] = 'tm-modclass-' . $moduleclass_sfx;
