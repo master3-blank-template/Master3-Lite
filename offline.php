@@ -28,6 +28,11 @@ if ($cssUikit !== 'none') {
     HTMLHelper::stylesheet('templates/' . $this->template . '/uikit/dist/css/' . $cssUikit, [], ['options' => ['version' => 'auto']]);
 }
 
+$customCSS = 'templates/' . $this->template . '/css/custom.css';
+if (file_exists(Path::clean(JPATH_ROOT . '/' . $customCSS))) {
+    HTMLHelper::stylesheet($customCSS, [], ['options' => ['version' => 'auto']]);
+}
+
 $jsUikit = $this->params->get('jsUikit', 'uikit.min.js');
 if ($jsUikit !== 'none') {
     HTMLHelper::script('templates/' . $this->template . '/uikit/dist/js/' . $jsUikit, [], ['options' => ['version' => 'auto']]);
