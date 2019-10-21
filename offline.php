@@ -14,6 +14,7 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Helper\AuthenticationHelper;
+use Joomla\CMS\Filesystem\Path;
 
 $app = Factory::getApplication();
 $twofactormethods = AuthenticationHelper::getTwoFactorMethods();

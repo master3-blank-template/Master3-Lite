@@ -9,51 +9,8 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
-use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Language\Text;
-
-$this->setHtml5(true);
-$this->setGenerator('');
-$this->setMetaData('viewport', 'width=device-width,initial-scale=1');
-$this->setMetaData('X-UA-Compatible', 'IE=edge', 'http-equiv');
-
-$cssUikit = $this->params->get('cssUikit', 'uikit.min.css');
-if ($cssUikit !== 'none') {
-    $isRTL = strpos($cssUikit, 'rtl') !== false;
-    $isMin = strpos($cssUikit, 'min') !== false;
-    HTMLHelper::_('uikit3.css', $isRTL, $isMin);
-}
-
-if ($this->params->get('jsJQ', false)) {
-    HTMLHelper::_('jquery.framework', true, null, false);
-}
-
-$jsUikit = $this->params->get('jsUikit', 'uikit.min.js');
-if ($jsUikit !== 'none') {
-    $isMin = strpos($jsUikit, 'min') !== false;
-    HTMLHelper::_('uikit3.js', $isMin);
-}
-
-$jsIcons = $this->params->get('jsIcons', 'uikit-icons.min.js');
-if ($jsIcons !== 'none') {
-    $isMin = strpos($jsIcons, 'min') !== false;
-    HTMLHelper::_('uikit3.icons', $isMin);
-}
-
-$this->addFavicon(Uri::base(true) . '/templates/' . $this->template . '/favicon.png', 'image/png', 'shortcut icon');
-$this->addHeadLink(Uri::base(true) . '/templates/' . $this->template . '/apple-touch-icon.png', 'apple-touch-icon-precomposed');
-
-/* begin: add your connections to head here */
-
-
-
-/* end */
-
-$customCSS = 'templates/' . $this->template . '/css/custom.css';
-if (file_exists(Path::clean(JPATH_ROOT . '/' . $customCSS))) {
-    HTMLHelper::stylesheet($customCSS, [], ['options' => ['version' => 'auto']]);
-}
 
 $errorLevelStr = Factory::getConfig()->get('error_reporting', 'default');
 $isTable = ($errorLevelStr === 'maximum') || ($errorLevelStr === 'development');
@@ -73,7 +30,7 @@ $link = Uri::base(true);
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <link href="/templates/<?php echo $this->template; ?>/favicon.png" rel="shortcut icon" type="image/png" />
-    <link href="/templates/<?php echo $this->template; ?>/uikit/dist/css/uikit.min.css" rel="stylesheet" />
+    <link href="/media/uikit3/dist/css/uikit.min.css" rel="stylesheet" />
 </head>
 <body>
     
