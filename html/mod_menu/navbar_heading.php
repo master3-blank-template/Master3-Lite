@@ -25,10 +25,6 @@ if ($item->menu_image) {
     }
 }
 
-if ($miParams->subtitle) {
-    $linktype .= '<span class="uk-display-block uk-navbar-subtitle">' . $miParams->subtitle . '</span>';
-}
-
 $linktype .= '</span>';
 
 echo '<span class="uk-flex uk-flex-center uk-flex-middle">' . $linktype . '</span>';

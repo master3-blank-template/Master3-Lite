@@ -40,10 +40,6 @@ if ($item->menu_image) {
     }
 }
 
-if ($miParams->subtitle) {
-    $linktype .= '<span class="uk-display-block uk-navbar-subtitle">' . $miParams->subtitle . '</span>';
-}
-
 $linktype .= '</span>';
 
 if ($item->browserNav == 1) {

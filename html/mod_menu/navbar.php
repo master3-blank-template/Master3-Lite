@@ -11,21 +11,7 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Helper\ModuleHelper;
 
-if (!function_exists('getL2Items')) {
-    function getL2Items($items, $id)
-    {
-        $result = 0;
-        foreach ($items as $item) {
-            if ((int) $item->level === 2 && (int) $item->parent_id === $id) {
-                $result++;
-            }
-        }
-        return $result;
-    }
-}
-
 $id = '';
-$l2_i = 0;
 
 if ($tagId = $params->get('tag_id', '')) {
     $id = ' id="' . $tagId . '"';
@@ -91,29 +77,7 @@ foreach ($list as $i => &$item) {
 
     if ($item->deeper) {
         if ((int) $item->level === 1) {
-
-            if ($miParams->cols === 1) {
-                echo '<div class="uk-navbar-dropdown"><ul class="uk-nav uk-navbar-dropdown-nav">';
-            } else {
-                $l2_ic = getL2Items($list, (int) $item->id);
-                $l2_cnt = (int) floor($l2_ic / $miParams->cols);
-                $l2_rod = (int) ($l2_ic % $miParams->cols);
-                $l2_i = 0;
-                $l2_aItem = 0;
-                $l2_arr = [];
-                for ($l2_tmp = 0; $l2_tmp < $miParams->cols; $l2_tmp++) {
-                    $l2_arr[$l2_tmp] = $l2_cnt + ($l2_rod ? 1 : 0);
-                    $l2_rod = ($l2_rod ? $l2_rod - 1 : 0);
-                }
-                unset($l2_ic, $l2_cnt, $l2_rod);
-
-                $divider = $miParams->divider ? 'uk-navbar-dropdown-grid ' : '';
-
-                echo '<div class="uk-navbar-dropdown uk-navbar-dropdown-width-1">'
-                    . '<div class="' . $divider . 'uk-child-width-1-1" data-uk-grid>'
-                    . '<div>'
-                    . '<ul class="uk-nav uk-navbar-dropdown-nav">';
-            }
+            echo '<div class="uk-navbar-dropdown"><ul class="uk-nav uk-navbar-dropdown-nav">';
         } else {
             echo '<ul class="uk-nav-sub">';
         }
@@ -127,36 +91,13 @@ foreach ($list as $i => &$item) {
         }
 
         if (((int) $item->level - (int) $item->level_diff) === 1) {
-
-            if ($miParams->cols === 1) {
-                echo '</ul></div></li>';
-            } else {
-                echo '</ul></div></div></div></li>';
-                unset($l2_arr);
-            }
+            echo '</ul></div></li>';
         } else {
             echo '</ul></li>';
         }
 
-        if (isset($l2_arr) && isset($l2_aItem)) {
-            $l2_i++;
-            if ($l2_arr[$l2_aItem] === $l2_i) {
-                echo '</ul></div><div><ul class="uk-nav uk-navbar-dropdown-nav">';
-                $l2_i = 0;
-                $l2_aItem++;
-            }
-        }
     } else {
         echo '</li>';
-
-        if ((int) $item->level === 2 && isset($l2_arr) && isset($l2_aItem)) {
-            $l2_i++;
-            if ($l2_arr[$l2_aItem] === $l2_i) {
-                echo '</ul></div><div><ul class="uk-nav uk-navbar-dropdown-nav">';
-                $l2_i = 0;
-                $l2_aItem++;
-            }
-        }
     }
 }
 
