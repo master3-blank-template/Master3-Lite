@@ -89,7 +89,7 @@
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
-                <field name="s1" type="separator" label="true" />
+                <field name="s1" type="spacer" hr="true" />
                 
                 <field name="systemmsg" type="list" label="TPL_MASTER3LITE_SYSTEMMSG_LABEL" default="alert">
                     <option value="alert">TPL_MASTER3LITE_SYSTEMMSG_ALERT</option>
@@ -104,7 +104,7 @@
                     <option value="bottom-right">TPL_MASTER3LITE_SYSTEMMSG_NOTIFYPOS_BOTTOM_RIGHT</option>
                 </field>
                 <field name="systemmsgTimeout" type="text" label="TPL_MASTER3LITE_SYSTEMMSG_NOTIFYT_TIMEOUT_LABEL" default="5" class="input-small" showon="systemmsg:notify" />
-                <field name="s2" type="separator" label="true" />
+                <field name="s2" type="spacer" hr="true" />
 
                 <field name="omb" type="list" label="TPL_MASTER3LITE_MENUBREAKPOINT_LABEL" default="@m">
                     <option value="@s">small</option>
