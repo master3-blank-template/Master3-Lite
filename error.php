@@ -84,7 +84,7 @@ $errorCode = $this->error->getCode();
                         $this->setError($this->_error->getPrevious());
                         while ($loop === true) {
                     ?>
-                    <p><strong><?php echo JText::_('JERROR_LAYOUT_PREVIOUS_ERROR'); ?></strong></p>
+                    <p><strong><?php echo Text::_('JERROR_LAYOUT_PREVIOUS_ERROR'); ?></strong></p>
                     <p><?php
                         echo
                             htmlspecialchars($this->_error->getMessage(), ENT_QUOTES, 'UTF-8'), '<br>',
