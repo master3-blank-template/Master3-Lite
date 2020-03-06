@@ -2,7 +2,7 @@
 /*
  * @package     Joomla.Site
  * @subpackage  Templates.master3lite
- * @copyright   Copyright (C) 2019 Aleksey A. Morozov. All rights reserved.
+ * @copyright   Copyright (C) Aleksey A. Morozov. All rights reserved.
  * @license     GNU General Public License version 3 or later; see http://www.gnu.org/licenses/gpl-3.0.txt
  */
 
@@ -16,10 +16,6 @@ use Joomla\Archive\Archive;
 
 class master3liteInstallerScript
 {
-	private $jCompatible = '<p>To install %s upgrade Joomla! version to minimum %s.</p>';
-	private $phpCompatible = '<p>To install %s upgrade PHP version to minimum %s.</p>';
-	private $uikitCompatible = '<p>UIkit3 installation error: %s. The operation of the template is not possible.</p>';
-
 	function preflight($type, $parent)
 	{
 		if (strtolower($type) === 'uninstall') {
@@ -29,7 +25,7 @@ class master3liteInstallerScript
 		$minJoomlaVersion = $parent->get('manifest')->attributes()->version[0];
 
 		if (!class_exists('Joomla\CMS\Version')) {
-			JFactory::getApplication()->enqueueMessage(JText::sprintf($this->jCompatible, JText::_($parent->manifest->name[0]), $minJoomlaVersion), 'error');
+			JFactory::getApplication()->enqueueMessage(JText::sprintf('J_JOOMLA_COMPATIBLE', JText::_($parent->manifest->name[0]), $minJoomlaVersion), 'error');
 			return false;
 		}
 
@@ -41,11 +37,11 @@ class master3liteInstallerScript
 			$ver = new Version();
 
 			if (version_compare($ver->getShortVersion(), $minJoomlaVersion, 'lt')) {
-				$msg .= Text::sprintf($this->jCompatible, $name, $minJoomlaVersion);
+				$msg .= Text::sprintf('J_JOOMLA_COMPATIBLE', $name, $minJoomlaVersion);
 			}
 
 			if (version_compare(phpversion(), $minPhpVersion, 'lt')) {
-				$msg .= Text::sprintf($this->phpCompatible, $name, $minPhpVersion);
+				$msg .= Text::sprintf('J_PHP_COMPATIBLE', $name, $minPhpVersion);
 			}
 
 			if ($msg) {
@@ -63,13 +59,14 @@ class master3liteInstallerScript
 
 		$result = $this->installUikit3($parent);
 		if ($result !== true) {
-			Factory::getApplication()->enqueueMessage(Text::sprintf($this->uikitCompatible, $result), 'error');
+			Factory::getApplication()->enqueueMessage(Text::sprintf('TPL_MASTER3_UIKIT3_INSTALLATION_ERROR', $result), 'error');
 			return false;
 		}
 
 		$oldUikit = Path::clean(JPATH_ROOT . '/templates/master3lite/uikit');
 		if (is_dir($oldUikit)) {
 			\JFolder::delete($oldUikit);
+			InstallerHelper::cleanupInstall($oldUikit);
 		}
 	}
 
@@ -101,35 +98,35 @@ class master3liteInstallerScript
 
 			$contents = file_get_contents($uikitFile);
 			if ($contents === false) {
-				return "failed to download UIkit3 installation file ({$uikitFile})";
+				return Text::sprintf('TPL_MASTER3_UIKIT3_IE_FAILED_DOWNLOAD', $uikitFile);
 			}
 
 			$resultContents = file_put_contents($tmpFile, $contents);
 			if ($resultContents == false) {
-				return "failed to save UIkit3 installation file ({$tmpFile})";
+				return Text::sprintf('TPL_MASTER3_UIKIT3_IE_FAILED_INSTALLATION', $tmpFile);
 			}
 
 			if (!file_exists($tmpFile)) {
-				return "not exists UIkit3 installation file ({$tmpFile})";
+				return Text::sprintf('TPL_MASTER3_UIKIT3_IE_NOT_EXISTS', $tmpFile);
 			}
 
 			$archive = new Archive(['tmp_path' => $tmp]);
 			try {
 				$archive->extract($tmpFile, $extDir);
 			} catch (\Exception $e) {
-				return "failed to unzip UIkit3 installation file ({$tmpFile}, {$extDir}, {$e})";
+				return Text::sprintf('TPL_MASTER3_UIKIT3_IE_FAILER_UNZIP', $tmpFile, $extDir, $e->getMesage());
 			}
 
 			$installer = new Installer();
 			$installer->setPath('source', $extDir);
 			if (!$installer->findManifest()) {
 				InstallerHelper::cleanupInstall($tmpFile, $extDir);
-				return 'the correct manifest of the UIkit 3 installation file was not found';
+				return Text::_('TPL_MASTER3_UIKIT3_IE_INCORRECT_MANIFEST');
 			}
 
 			if (!$installer->install($extDir)) {
 				InstallerHelper::cleanupInstall($tmpFile, $extDir);
-				return 'UIkit3 installation error';
+				return Text::_('TPL_MASTER3_UIKIT3_IE_INSTALLER_ERROR');
 			}
 			
 			InstallerHelper::cleanupInstall($tmpFile, $extDir);
