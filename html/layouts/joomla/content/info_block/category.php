@@ -20,7 +20,7 @@ $jsIcons = $template->params->get('jsIcons', 'none');
 <dd class="category-name">
     <?php
     if ($jsIcons !== 'none') {
-        echo '<span data-uk-icon="icon:folder"></span>&nbsp;';
+        echo '<span data-uk-icon="icon:folder"></span> ';
     }
     $title = $this->escape($displayData['item']->category_title);
     if ($displayData['params']->get('link_category') && $displayData['item']->catslug) {

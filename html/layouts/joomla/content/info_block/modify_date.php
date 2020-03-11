@@ -20,7 +20,7 @@ $jsIcons = $template->params->get('jsIcons', 'none');
 <dd class="modified">
     <?php
     if ($jsIcons !== 'none') {
-        echo '<span data-uk-icon="icon:calendar"></span>&nbsp;';
+        echo '<span data-uk-icon="icon:calendar"></span>';
     }
     ?>
     <time datetime="<?php echo HTMLHelper::_( 'date', $displayData[ 'item' ]->modified, 'c' ); ?>" itemprop="dateModified">

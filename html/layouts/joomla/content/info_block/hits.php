@@ -19,7 +19,7 @@ $jsIcons = $template->params->get('jsIcons', 'none');
 <dd class="hits">
     <?php
     if ($jsIcons !== 'none') {
-        echo '<span data-uk-icon="icon:bolt"></span>&nbsp;';
+        echo '<span data-uk-icon="icon:bolt"></span>';
     }
     ?>
     <meta itemprop="interactionCount" content="UserPageVisits:<?php echo $displayData['item']->hits; ?>" />
