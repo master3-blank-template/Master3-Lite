@@ -29,7 +29,7 @@ if (is_array($msgList) && count($msgList)) {
         }
 
         $buffer[] = '<div class="uk-margin-remove uk-alert-large' . $msgtype . '" data-uk-alert>';
-        $buffer[] = '<div class="uk-containeer">';
+        $buffer[] = '<div class="uk-container">';
         $buffer[] = '<div class="uk-panel">';
 
         $buffer[] = '<a class="uk-alert-close" data-uk-close></a>';
