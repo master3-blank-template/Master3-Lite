@@ -63,7 +63,7 @@ if (file_exists(Path::clean(JPATH_ROOT . '/' . $customCSS))) {
 <body>
     <jdoc:include type="message" />
     <main id="content">
-        <?php echo $systemOutput; ?>
+        <jdoc:include type="component" />
     </main>
 </body>
 </html>
