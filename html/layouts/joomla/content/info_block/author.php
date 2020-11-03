@@ -2,7 +2,7 @@
 /**
  * @package     Joomla.Site
  * @subpackage  Layout
- * @copyright   Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -13,11 +13,10 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\HTML\HTMLHelper;
 
 $template = Factory::getApplication('site')->getTemplate(true);
-
 $jsIcons = $template->params->get('jsIcons', 'none');
 
 ?>
-<dd class="createdby" itemprop="author" itemscope itemtype="https://schema.org/Person">
+<div class="createdby" itemprop="author" itemscope itemtype="https://schema.org/Person">
     <?php
     if ($jsIcons !== 'none') {
         echo '<span data-uk-icon="icon:user"></span> ';
@@ -30,4 +29,4 @@ $jsIcons = $template->params->get('jsIcons', 'none');
         echo Text::sprintf('COM_CONTENT_WRITTEN_BY', $author);
     }
     ?>
-</dd>
+</div>

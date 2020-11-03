@@ -2,7 +2,7 @@
 /**
  * @package     Joomla.Site
  * @subpackage  com_users
- * @copyright   Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -14,11 +14,11 @@ use Joomla\CMS\Router\Route;
 
 ?>
 <div class="reset-complete<?php echo $this->pageclass_sfx; ?>">
-    
+
     <?php if ($this->params->get('show_page_heading')) { ?>
     <h1 class="uk-article-title"><?php echo $this->escape($this->params->get('page_heading')); ?></h1>
     <?php } ?>
-    
+
     <form action="<?php echo Route::_('index.php?option=com_users&task=reset.complete'); ?>" method="post" class="form-validate form-horizontal well">
         <?php
         foreach ($this->form->getFieldsets() as $fieldset) {
@@ -52,13 +52,13 @@ use Joomla\CMS\Router\Route;
             }
         }
         ?>
-        
+
         <hr class="uk-margin-medium">
-        
+
         <div>
             <button type="submit" class="uk-button uk-button-primary validate"><?php echo Text::_('JSUBMIT'); ?></button>
         </div>
-        
+
         <?php echo HTMLHelper::_('form.token'); ?>
 
     </form>

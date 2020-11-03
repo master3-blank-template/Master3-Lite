@@ -2,12 +2,13 @@
 /**
  * @package     Joomla.Site
  * @subpackage  Layout
- * @copyright   Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('JPATH_BASE') or die;
 
+use Joomla\CMS\Factory;
 use Joomla\Utilities\ArrayHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Language\Text;
@@ -44,6 +45,9 @@ extract($displayData);
  * @var   mixed    $groups          The filtering groups (null means no filtering)
  * @var   mixed    $excluded        The users to exclude from the list of users
  */
+
+$template = Factory::getApplication('site')->getTemplate(true);
+$jsIcons = $template->params->get('jsIcons', 'none');
 
 if (!$readonly) {
     HTMLHelper::_('behavior.modal', 'a.modal_' . $id);
@@ -89,13 +93,13 @@ $anchorAttributes = ['class' => 'uk-button uk-button-primary modal_' . $id, 'tit
 
 ?>
 <div class="uk-button-group uk-width">
-    <input <?php echo ArrayHelper::toString($inputAttributes); ?> readonly />
+    <input <?php echo ArrayHelper::toString($inputAttributes); ?> readonly>
     <?php
     if (!$readonly) {
-        echo HTMLHelper::_('link', (string)$uri, '<span data-uk-icon="icon:user"></span>', $anchorAttributes);
+        echo HTMLHelper::_('link', (string)$uri, $jsIcons !== 'none' ? '<span data-uk-icon="icon:user"></span>' : Text::_('JLIB_FORM_CHANGE_USER'), $anchorAttributes);
     }
     ?>
 </div>
 <?php if (!$readonly) { ?>
-    <input type="hidden" id="<?php echo $id; ?>_id" name="<?php echo $name; ?>" value="<?php echo (int)$value; ?>" data-onchange="<?php echo $this->escape($onchange); ?>" />
+    <input type="hidden" id="<?php echo $id; ?>_id" name="<?php echo $name; ?>" value="<?php echo (int)$value; ?>" data-onchange="<?php echo $this->escape($onchange); ?>">
 <?php }

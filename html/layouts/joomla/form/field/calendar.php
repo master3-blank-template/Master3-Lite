@@ -2,7 +2,7 @@
 /**
  * @package     Joomla.Site
  * @subpackage  Layout
- * @copyright   Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -60,6 +60,9 @@ $document = Factory::getDocument();
  * @var   integer  $direction       The document direction
  */
 
+$template = Factory::getApplication('site')->getTemplate(true);
+$jsIcons = $template->params->get('jsIcons', 'none');
+
 $inputvalue = '';
 
 // Build the attributes array.
@@ -113,8 +116,8 @@ HTMLHelper::_('stylesheet', 'system/fields/calendar' . $cssFileExt, array(), tru
         echo $name; ?>" value="<?php
         echo htmlspecialchars(($value !== '0000-00-00 00:00:00') ? $value : '', ENT_COMPAT, 'UTF-8'); ?>" <?php echo $attributes; ?>
         <?php echo !empty($hint) ? 'placeholder="' . htmlspecialchars($hint, ENT_COMPAT, 'UTF-8') . '"' : ''; ?> data-alt-value="<?php
-        echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?>" autocomplete="off"/>
-        <button type="button" class="<?php echo ($readonly || $disabled) ? 'hidden ' : ''; ?>uk-button uk-button-default"
+        echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?>" autocomplete="off">
+        <button type="button" class="<?php echo ($readonly || $disabled) ? 'uk-hidden ' : ''; ?>uk-button uk-button-default"
             id="<?php echo  $id; ?>_btn"
             data-inputfield="<?php echo $id; ?>"
             data-dayformat="<?php echo $format; ?>"
@@ -130,7 +133,7 @@ HTMLHelper::_('stylesheet', 'system/fields/calendar' . $cssFileExt, array(), tru
             <?php echo isset($minYear) && strlen($minYear) ? 'data-min-year="' . $minYear . '"' : ''; ?>
             <?php echo isset($maxYear) && strlen($maxYear) ? 'data-max-year="' . $maxYear . '"' : ''; ?>
             title="<?php echo Text::_('JLIB_HTML_BEHAVIOR_OPEN_CALENDAR'); ?>"
-        ><span data-uk-icon="icon:calendar" aria-hidden="true"></span></button>
+        ><?php echo $jsIcons !== 'none' ? '<span data-uk-icon="icon:calendar" aria-hidden="true"></span>' : '&darr;'; ?></button>
     <?php if (!$readonly && !$disabled) { ?>
     </div>
     <?php } ?>

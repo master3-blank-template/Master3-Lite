@@ -2,7 +2,7 @@
 /**
  * @package     Joomla.Site
  * @subpackage  Layout
- * @copyright   Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -12,11 +12,10 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 
 $template = Factory::getApplication('site')->getTemplate(true);
-
 $jsIcons = $template->params->get('jsIcons', 'none');
 
 ?>
-<dd class="hits">
+<div class="hits">
     <?php
     if ($jsIcons !== 'none') {
         echo '<span data-uk-icon="icon:bolt"></span>';
@@ -24,4 +23,4 @@ $jsIcons = $template->params->get('jsIcons', 'none');
     ?>
     <meta itemprop="interactionCount" content="UserPageVisits:<?php echo $displayData['item']->hits; ?>" />
     <?php echo Text::sprintf('COM_CONTENT_ARTICLE_HITS', $displayData['item']->hits); ?>
-</dd>
+</div>

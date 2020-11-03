@@ -12,6 +12,7 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\Helper\ModuleHelper;
+use Joomla\CMS\Language\Text;
 
 // set base header
 $this->setHtml5(true);
@@ -120,11 +121,11 @@ if (!$isNavbarMenu) {
 <div role="toolbar" id="toolbar" class="uk-section uk-section-xsmall uk-section-primary">
     <div class="uk-container">
         <div class="uk-flex uk-flex-between">
-            
+
             <?php if ($this->countModules('toolbar-left')) { ?>
             <jdoc:include type="modules" name="toolbar-left" style="master3lite" />
             <?php } ?>
-            
+
             <?php if ($this->countModules('toolbar-right')) { ?>
             <jdoc:include type="modules" name="toolbar-right" style="master3lite" />
             <?php } ?>
@@ -139,13 +140,13 @@ if (!$isNavbarMenu) {
 <header id="header" class="uk-section uk-section-xsmall">
     <div class="uk-container">
         <div data-uk-grid>
-            
+
             <?php if ($this->countModules('logo')) { ?>
             <div class="uk-width-auto@s uk-flex uk-flex-middle">
                 <jdoc:include type="modules" name="logo" style="master3lite" />
             </div>
             <?php } ?>
-            
+
             <?php if ($this->countModules('headbar')) { ?>
             <div class="uk-width-expand@s uk-flex uk-flex-middle uk-flex-right@s">
                 <jdoc:include type="modules" name="headbar" style="master3lite" />
@@ -162,39 +163,39 @@ if (!$isNavbarMenu) {
 <div role="navigation" id="navbar" class="uk-section uk-padding-remove-vertical uk-navbar-container">
     <div class="uk-container">
         <div data-uk-navbar>
-            
+
             <?php
             if ($this->countModules('navbar-left')) {
                 if ($isNavbarMenuLeft) {
             ?>
             <div class="uk-navbar-left uk-hidden<?php echo $omb; ?>">
-                <a href="#offcanvas" class="uk-navbar-toggle" data-uk-navbar-toggle-icon data-uk-toggle role="button"></a>
+                <a href="#offcanvas" class="uk-navbar-toggle" data-uk-navbar-toggle-icon data-uk-toggle name="Menu"></a>
             </div>
             <?php } ?>
             <div class="uk-navbar-left<?php echo ($isNavbarMenuLeft ? ' uk-visible' . $omb : ''); ?>">
                 <jdoc:include type="modules" name="navbar-left" style="master3lite" />
             </div>
             <?php } ?>
-            
+
             <?php
             if ($this->countModules('navbar-center')) {
                 if ($isNavbarMenuCenter) {
             ?>
             <div class="uk-navbar-center uk-hidden<?php echo $omb; ?>">
-                <a href="#offcanvas" class="uk-navbar-toggle" data-uk-navbar-toggle-icon data-uk-toggle role="button"></a>
+                <a href="#offcanvas" class="uk-navbar-toggle" data-uk-navbar-toggle-icon data-uk-toggle name="Menu"></a>
             </div>
             <?php } ?>
             <div class="uk-navbar-center<?php echo ($isNavbarMenuCenter ? ' uk-visible' . $omb : ''); ?>">
                 <jdoc:include type="modules" name="navbar-center" style="master3lite" />
             </div>
             <?php } ?>
-            
+
             <?php
             if ($this->countModules('navbar-right')) {
                 if ($isNavbarMenuRight) {
             ?>
             <div class="uk-navbar-right uk-hidden<?php echo $omb; ?>">
-                <a href="#offcanvas" class="uk-navbar-toggle" data-uk-navbar-toggle-icon data-uk-toggle role="button"></a>
+                <a href="#offcanvas" class="uk-navbar-toggle" data-uk-navbar-toggle-icon data-uk-toggle name="Menu"></a>
             </div>
             <?php } ?>
             <div class="uk-navbar-right<?php echo ($isNavbarMenuRight ? ' uk-visible' . $omb : ''); ?>">
@@ -245,20 +246,20 @@ $mainWidth = $sidebarACount && $sidebarBCount ? '1-2' : ($sidebarACount || $side
 <div id="main" class="uk-section uk-section-default">
     <div class="uk-container">
         <div data-uk-grid>
-            
+
             <div class="uk-width-<?php echo $mainWidth; ?>@m">
                 <div class="uk-child-width-1-1 uk-grid divider" data-uk-grid>
-                    
+
                     <?php if ($mainTopCount) { ?>
                     <div class="uk-margin-large-bottom uk-child-width-1-1" data-uk-grid>
                         <jdoc:include type="modules" name="main-top" style="master3lite" />
                     </div>
                     <?php } ?>
-                    
+
                     <main id="content">
                         <jdoc:include type="component" />
                     </main>
-                    
+
                     <?php if ($mainBottomCount) { ?>
                     <div class="uk-margin-large-top uk-child-width-1-1" data-uk-grid>
                         <jdoc:include type="modules" name="main-bottom" style="master3lite" />
@@ -266,7 +267,7 @@ $mainWidth = $sidebarACount && $sidebarBCount ? '1-2' : ($sidebarACount || $side
                     <?php } ?>
                 </div>
             </div>
-            
+
             <?php if ($sidebarACount) { ?>
             <aside class="uk-width-1-4@m uk-width-1-1@s uk-flex-first@m">
                 <div class="uk-child-width-1-1" data-uk-grid>
@@ -274,7 +275,7 @@ $mainWidth = $sidebarACount && $sidebarBCount ? '1-2' : ($sidebarACount || $side
                 </div>
             </aside>
             <?php } ?>
-            
+
             <?php if ($sidebarBCount) { ?>
             <aside class="uk-width-1-4@m uk-width-1-1@s">
                 <div class="uk-child-width-1-1" data-uk-grid>
@@ -282,7 +283,7 @@ $mainWidth = $sidebarACount && $sidebarBCount ? '1-2' : ($sidebarACount || $side
                 </div>
             </aside>
             <?php } ?>
-            
+
         </div>
     </div>
 </div>
@@ -314,13 +315,13 @@ if ($bottomCount) {
 <?php } ?>
 
 
-<a class="uk-padding-small uk-position-bottom-left uk-position-fixed" data-uk-totop data-uk-scroll role="button"></a>
+<a class="uk-padding-small uk-position-bottom-left uk-position-fixed" data-uk-totop data-uk-scroll name="Up"></a>
 
 
 <?php if ($isOffcanvas) { ?>
 <aside id="offcanvas" data-uk-offcanvas="mode:slide;overlay:true;">
     <div class="uk-offcanvas-bar">
-        <a class="uk-offcanvas-close" data-uk-close role="button"></a>
+        <a class="uk-offcanvas-close" data-uk-close name="<?php echo Text::_('JLIB_HTML_BEHAVIOR_CLOSE'); ?>"></a>
         <jdoc:include type="modules" name="offcanvas" style="master3lite" />
     </div>
 </aside>

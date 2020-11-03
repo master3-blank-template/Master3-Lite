@@ -2,7 +2,7 @@
 /**
  * @package     Joomla.Site
  * @subpackage  Layout
- * @copyright   Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -20,7 +20,7 @@ if (!empty($displayData['item']->associations)) {
     $associations = $displayData['item']->associations;
     ?>
 
-<dd class="association">
+<div class="association">
     <?php
     echo Text::_('JASSOCIATIONS');
     foreach ($associations as $association) {
@@ -38,6 +38,6 @@ if (!empty($displayData['item']->associations)) {
         }
     }
     ?>
-</dd>
+</div>
 <?php
 }

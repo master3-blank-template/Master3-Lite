@@ -2,12 +2,13 @@
 /**
  * @package     Joomla.Site
  * @subpackage  Layout
- * @copyright   Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('JPATH_BASE') or die;
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 
 extract($displayData);
@@ -40,6 +41,9 @@ extract($displayData);
  * @var   array    $options         Options available for this field.
  */
 
+$template = Factory::getApplication('site')->getTemplate(true);
+$jsIcons = $template->params->get('jsIcons', 'none');
+
 // Including fallback code for HTML5 non supported browsers.
 HTMLHelper::_('jquery.framework');
 HTMLHelper::_('script', 'system/html5fallback.js', array('version' => 'auto', 'relative' => true, 'conditional' => 'lt IE 9'));
@@ -63,9 +67,9 @@ $attr .= !empty($onchange) ? ' onchange="' . $onchange . '"' : '';
         value="<?php echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?>"
         <?php echo $attr; ?>
         autocomplete="off"
-    />
+    >
     <div class="uk-inline">
-        <button type="button" class="uk-button"><span data-uk-icon="icon:triangle-down"></span></button>
+        <button type="button" class="uk-button"><?php echo $jsIcons !== 'none' ? '<span data-uk-icon="icon:triangle-down"></span>' : '&darr;'; ?></button>
         <div data-uk-dropdown="mode:click">
             <ul class="uk-list dropdown-menu">
                 <?php foreach ($options as $option) { ?>

@@ -2,7 +2,7 @@
 /**
  * @package     Joomla.Site
  * @subpackage  Layout
- * @copyright   Copyright (C) 2005 - 2019 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -13,11 +13,10 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 $template = Factory::getApplication('site')->getTemplate(true);
-
 $jsIcons = $template->params->get('jsIcons', 'none');
 
 ?>
-<dd class="category-name">
+<div class="category-name">
     <?php
     if ($jsIcons !== 'none') {
         echo '<span data-uk-icon="icon:folder"></span> ';
@@ -30,4 +29,4 @@ $jsIcons = $template->params->get('jsIcons', 'none');
         echo Text::sprintf('COM_CONTENT_CATEGORY', '<span itemprop="genre">' . $title . '</span>');
     }
     ?>
-</dd>
+</div>
