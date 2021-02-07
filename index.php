@@ -63,6 +63,12 @@ if (file_exists(Path::clean(JPATH_ROOT . '/' . $customCSS))) {
     HTMLHelper::stylesheet($customCSS, [], ['options' => ['version' => 'auto']]);
 }
 
+// include custom scripts
+$customJS = 'templates/' . $this->template . '/js/custom.js';
+if (file_exists(Path::clean(JPATH_ROOT . '/' . $customJS))) {
+    HTMLHelper::script($customJS, [], ['options' => ['version' => 'auto']]);
+}
+
 
 /* === Menu options === */
 
@@ -120,7 +126,7 @@ if (!$isNavbarMenu) {
 <?php if ($this->countModules('toolbar-left + toolbar-right')) { ?>
 <div role="toolbar" id="toolbar" class="uk-section uk-section-xsmall uk-section-primary">
     <div class="uk-container">
-        <div class="uk-flex uk-flex-between">
+        <div class="uk-flex uk-flex-middle uk-flex-between">
 
             <?php if ($this->countModules('toolbar-left')) { ?>
             <jdoc:include type="modules" name="toolbar-left" style="master3lite" />
@@ -169,7 +175,7 @@ if (!$isNavbarMenu) {
                 if ($isNavbarMenuLeft) {
             ?>
             <div class="uk-navbar-left uk-hidden<?php echo $omb; ?>">
-                <a href="#offcanvas" class="uk-navbar-toggle" data-uk-navbar-toggle-icon data-uk-toggle aria-label="Menu" name="Menu"></a>
+                <a href="#offcanvas" class="uk-navbar-toggle" data-uk-navbar-toggle-icon data-uk-toggle aria-label="Menu"></a>
             </div>
             <?php } ?>
             <div class="uk-navbar-left<?php echo ($isNavbarMenuLeft ? ' uk-visible' . $omb : ''); ?>">
@@ -182,7 +188,7 @@ if (!$isNavbarMenu) {
                 if ($isNavbarMenuCenter) {
             ?>
             <div class="uk-navbar-center uk-hidden<?php echo $omb; ?>">
-                <a href="#offcanvas" class="uk-navbar-toggle" data-uk-navbar-toggle-icon data-uk-toggle aria-label="Menu" name="Menu"></a>
+                <a href="#offcanvas" class="uk-navbar-toggle" data-uk-navbar-toggle-icon data-uk-toggle aria-label="Menu"></a>
             </div>
             <?php } ?>
             <div class="uk-navbar-center<?php echo ($isNavbarMenuCenter ? ' uk-visible' . $omb : ''); ?>">
@@ -195,7 +201,7 @@ if (!$isNavbarMenu) {
                 if ($isNavbarMenuRight) {
             ?>
             <div class="uk-navbar-right uk-hidden<?php echo $omb; ?>">
-                <a href="#offcanvas" class="uk-navbar-toggle" data-uk-navbar-toggle-icon data-uk-toggle aria-label="Menu" name="Menu"></a>
+                <a href="#offcanvas" class="uk-navbar-toggle" data-uk-navbar-toggle-icon data-uk-toggle aria-label="Menu"></a>
             </div>
             <?php } ?>
             <div class="uk-navbar-right<?php echo ($isNavbarMenuRight ? ' uk-visible' . $omb : ''); ?>">
@@ -315,13 +321,13 @@ if ($bottomCount) {
 <?php } ?>
 
 
-<a class="uk-padding-small uk-position-bottom-left uk-position-fixed" data-uk-totop data-uk-scroll aria-label="Up" name="Up"></a>
+<a class="uk-padding-small uk-position-bottom-left uk-position-fixed" data-uk-totop data-uk-scroll aria-label="Up"></a>
 
 
 <?php if ($isOffcanvas) { ?>
 <aside id="offcanvas" data-uk-offcanvas="mode:slide;overlay:true;">
     <div class="uk-offcanvas-bar">
-        <a class="uk-offcanvas-close" data-uk-close aria-label="<?php echo Text::_('JLIB_HTML_BEHAVIOR_CLOSE'); ?>" name="<?php echo Text::_('JLIB_HTML_BEHAVIOR_CLOSE'); ?>"></a>
+        <a class="uk-offcanvas-close" data-uk-close aria-label="<?php echo Text::_('JLIB_HTML_BEHAVIOR_CLOSE'); ?>"></a>
         <jdoc:include type="modules" name="offcanvas" style="master3lite" />
     </div>
 </aside>

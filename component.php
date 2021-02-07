@@ -54,6 +54,12 @@ if (file_exists(Path::clean(JPATH_ROOT . '/' . $customCSS))) {
     HTMLHelper::stylesheet($customCSS, [], ['options' => ['version' => 'auto']]);
 }
 
+// include custom scripts
+$customJS = 'templates/' . $this->template . '/js/custom.js';
+if (file_exists(Path::clean(JPATH_ROOT . '/' . $customJS))) {
+    HTMLHelper::script($customJS, [], ['options' => ['version' => 'auto']]);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
