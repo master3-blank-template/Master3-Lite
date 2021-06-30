@@ -58,13 +58,13 @@ $this->addHeadLink(Uri::base(true) . '/templates/' . $this->template . '/apple-t
 
 $customCSS = 'templates/' . $this->template . '/css/custom.css';
 if (file_exists(Path::clean(JPATH_ROOT . '/' . $customCSS))) {
-    HTMLHelper::stylesheet($customCSS, [], ['options' => ['version' => 'auto']]);
+    HTMLHelper::stylesheet($customCSS, [], ['options' => ['version' => filemtime(Path::clean(JPATH_ROOT . '/' . $customCSS))]]);
 }
 
 // include custom scripts
 $customJS = 'templates/' . $this->template . '/js/custom.js';
 if (file_exists(Path::clean(JPATH_ROOT . '/' . $customJS))) {
-    HTMLHelper::script($customJS, [], ['options' => ['version' => 'auto']]);
+    HTMLHelper::script($customJS, [], ['options' => ['version' => filemtime(Path::clean(JPATH_ROOT . '/' . $customJS))]]);
 }
 
 ?>
