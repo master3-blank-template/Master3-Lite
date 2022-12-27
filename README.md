@@ -2,6 +2,8 @@
 
 # Master3 Lite
 
+The project has been declared obsolete and is not subject to further development.
+
 [![Download](https://img.shields.io/badge/-download-28A5F5.svg?style=for-the-badge)](https://master3.alekvolsk.info/download/download-lite)
 [![Demo](https://img.shields.io/badge/-demo-28A5F5.svg?style=for-the-badge)](https://master3.alekvolsk.info/positions/lite)
 [![Documentation](https://img.shields.io/badge/-documentation-28A5F5.svg?style=for-the-badge)](https://master3.alekvolsk.info/documentation/lite-params)
